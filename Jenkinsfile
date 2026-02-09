@@ -43,7 +43,7 @@ pipeline {
     stage('SonarQube Analysis') {
       steps {
         withCredentials([string(credentialsId: 'SONAR_TOKEN_APPOINTMENT', variable: 'SONAR_TOKEN')]) {
-          withSonarQubeEnv('YourSonarQubeServerName') {
+          withSonarQubeEnv('SonarQube Scanner') {
             sh '''
               sonar-scanner \
                 -Dsonar.projectKey=appointment-service \
