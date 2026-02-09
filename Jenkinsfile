@@ -22,12 +22,9 @@ pipeline {
         sh 'npm test'
       }
     }
-    stage('Test-Sonarqube') {
+    stage('Lint') {
       steps {
-        withSonarQubeEnv('SonarQube') {
-          sh 'npm run test:coverage'
-          sh 'sonar-scanner -Dsonar.projectKey=appointmentservice -Dsonar.sources=.'
-        }
+        sh 'npm run lint'
       }
     }
     stage('DockerBuild Snapshot') {
