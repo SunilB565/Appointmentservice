@@ -23,6 +23,10 @@ pipeline {
         }
         // Always install supertest to guarantee presence
         sh 'npm install --save-dev supertest'
+        // Debug: List supertest directory after install
+        sh 'ls -l node_modules/supertest || echo "supertest not found"'
+        // Debug: List all node_modules top-level
+        sh 'ls -l node_modules'
       }
     }
     stage('Lint') {
