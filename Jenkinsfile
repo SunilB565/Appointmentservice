@@ -12,6 +12,8 @@ pipeline {
     stage('Checkout') { steps { checkout scm } }
     stage('Install') {
       steps {
+        // Clean up node_modules to avoid stale state
+        sh 'rm -rf node_modules'
         script {
           if (fileExists('package-lock.json')) {
             sh 'npm ci'
@@ -19,7 +21,7 @@ pipeline {
             sh 'npm install'
           }
         }
-        // Force install supertest after install to guarantee presence
+        // Always install supertest to guarantee presence
         sh 'npm install --save-dev supertest'
       }
     }
