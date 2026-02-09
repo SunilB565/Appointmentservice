@@ -44,13 +44,7 @@ pipeline {
       steps {
         withCredentials([string(credentialsId: 'SONAR_TOKEN_APPOINTMENT', variable: 'SONAR_TOKEN')]) {
           withSonarQubeEnv('SonarQube Scanner') {
-            sh '''
-              sonar-scanner \
-                -Dsonar.projectKey=appointment-service \
-                -Dsonar.sources=. \
-                -Dsonar.host.url=http://100.50.131.6:9000 \
-                -Dsonar.login=$SONAR_TOKEN
-            '''
+            sh 'sonar-scanner'
           }
         }
       }
